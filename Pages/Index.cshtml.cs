@@ -17,4 +17,17 @@ public class IndexModel : PageModel
     {
 
     }
+
+    public void OnPost()
+    {
+        string input = Request.Form["text"];
+        using (SqlConnection connection = new SqlConnection("aaa"))
+        {
+            SqlCommand sqlCommand = new SqlCommand()
+            {
+                CommandText = "SELECT ProductId FROM Products WHERE ProductName = '" + input + "'",
+                CommandType = CommandType.Text,
+            };
+        }
+    }
 }
