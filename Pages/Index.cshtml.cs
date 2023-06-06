@@ -25,9 +25,11 @@ public class IndexModel : PageModel
         {
             SqlCommand sqlCommand = new SqlCommand()
             {
-                CommandText = "SELECT ProductId FROM Products WHERE ProductName = '" + input + "'",
+                CommandText = "SELECT ProductId FROM Products WHERE ProductName = @productName",
                 CommandType = CommandType.Text,
             };
+
+            sqlCommand.Parameters.Add("@productName", SqlDbType.NVarChar, 128).Value = input;
         }
     }
 }
